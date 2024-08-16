@@ -50,6 +50,7 @@ if [[ "$PRETTY_NAME" == *"Fedora"* ]]; then
 elif [[ "$PRETTY_NAME" == *"Ubuntu"* ]]; then
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
     export XDG_DATA_DIRS="/home/linuxbrew/.linuxbrew/share:$XDG_DATA_DIRS"
+    alias bat="batcat"
 elif [[ "$PRETTY_NAME" == *"Debian"* ]]; then
     # echo "Brew not working in Debian for Rasberry"
     alias bat="batcat"
