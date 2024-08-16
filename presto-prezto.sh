@@ -39,10 +39,24 @@ OS="$(uname)"
 if [[ "$OS" == "Linux" ]] || [[ "$OS" == "Darwin" ]] ; then
     echo
     if [[ "$OS" == "Linux" ]]; then
-        echo "--> Please, type your password (to 'sudo apt install' the requirements):"
-        sudo apt update -y
-        sudo apt install -y zsh bat git
-        echo -e "\nInstalling zsh, bat and git"
+        if [[ "$PRETTY_NAME" == *"Fedora"* ]]; then
+            echo "--> Please, type your password (to 'sudo dnf install' the requirements):"
+        	  sudo dnf update -y
+        	  sudo dnf install zsh bat git -y
+        	  echo -e "\nInstalling zsh, bat and git"
+        elif [[ "$PRETTY_NAME" == *"Ubuntu"* ]]; then
+            echo "--> Please, type your password (to 'sudo apt install' the requirements):"
+        	  sudo apt update -y
+        	  sudo apt install -y zsh bat git
+        	  echo -e "\nInstalling zsh, bat and git"
+        elif [[ "$PRETTY_NAME" == *"Debian"* ]]; then
+            echo "--> Please, type your password (to 'sudo apt install' the requirements):"
+        	  sudo apt update -y
+        	  sudo apt install -y zsh bat git
+        	  echo -e "\nInstalling zsh, bat and git"
+        else
+            echo "System is not Fedora nor Ubuntu nor Debian."
+        fi
     fi
     if [[ "$OS" == "Darwin" ]]; then
         # Inspired by https://github.com/Homebrew/brew
@@ -167,8 +181,17 @@ if [[ "$OS" == "Linux" ]] || [[ "$OS" == "Darwin" ]] ; then
     #--------------------------------------------------
     echo -e "\nInstalling LSDeluxe"
     if [[ "$OS" == "Linux" ]]; then
-        curl -fsL https://raw.githubusercontent.com/wimpysworld/deb-get/main/deb-get | sudo -E bash -s install deb-get
-        sudo deb-get install lsd
+        if [[ "$PRETTY_NAME" == *"Fedora"* ]]; then
+            sudo dnf install lsd -y
+        elif [[ "$PRETTY_NAME" == *"Ubuntu"* ]]; then
+            curl -fsL https://raw.githubusercontent.com/wimpysworld/deb-get/main/deb-get | sudo -E bash -s install deb-get
+	          sudo deb-get install lsd
+        elif [[ "$PRETTY_NAME" == *"Debian"* ]]; then
+            curl -fsL https://raw.githubusercontent.com/wimpysworld/deb-get/main/deb-get | sudo -E bash -s install deb-get
+	          sudo deb-get install lsd
+        else
+            echo "System is not Fedora nor Ubuntu nor Debian."
+        fi
     fi
     if [[ "$OS" == "Darwin" ]]; then
         brew install lsd &> /dev/null
@@ -192,8 +215,8 @@ if [[ "$OS" == "Linux" ]] || [[ "$OS" == "Darwin" ]] ; then
 
     # Patch Prezto runcoms
     echo -e "\nPatching Prezto runcoms"
-    (cd ~/.zprezto/runcoms/ && curl -O https://raw.githubusercontent.com/JGroxz/presto-prezto/main/zshrc) &> /dev/null
-    (cd ~/.zprezto/runcoms/ && curl -O https://raw.githubusercontent.com/JGroxz/presto-prezto/main/zpreztorc) &> /dev/null
+    (cd ~/.zprezto/runcoms/ && curl -O https://raw.githubusercontent.com/Aiacos/presto-prezto/main/zshrc) &> /dev/null
+    (cd ~/.zprezto/runcoms/ && curl -O https://raw.githubusercontent.com/Aiacos/presto-prezto/main/zpreztorc) &> /dev/null
     if [[ "$OS" == "Linux" ]]; then
         sudo cp ~/.zshrc /root/
     fi
@@ -215,7 +238,7 @@ if [[ "$OS" == "Linux" ]] || [[ "$OS" == "Darwin" ]] ; then
         P10K_CONFIG_FILE=".p10k.zsh"
     fi
 
-    (cd ~/ && curl -o ".p10k.zsh" "https://raw.githubusercontent.com/JGroxz/presto-prezto/main/${P10K_CONFIG_FILE}") &> /dev/null
+    (cd ~/ && curl -o ".p10k.zsh" "https://raw.githubusercontent.com/Aiacos/presto-prezto/main/${P10K_CONFIG_FILE}") &> /dev/null
     if [[ "$OS" == "Linux" ]]; then
         sudo cp ~/.p10k.zsh /root/
     fi
