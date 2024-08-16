@@ -54,6 +54,7 @@ elif [[ "$PRETTY_NAME" == *"Ubuntu"* ]]; then
 elif [[ "$PRETTY_NAME" == *"Debian"* ]]; then
     # echo "Brew not working in Debian for Rasberry"
     alias bat="batcat"
+    alias nvim="/snap/bin/nvim"
 else
     # echo "System is not Fedora nor Ubuntu nor Debian."
 fi
