@@ -4,6 +4,7 @@
 # 
 # Based on https://github.com/gustavohellwig/gh-zsh
 
+source /etc/os-release
 
 #--------------------------------------------------
 # Parse CLI options (logic based on https://github.com/ryanoasis/nerd-fonts/blob/master/install.sh)
