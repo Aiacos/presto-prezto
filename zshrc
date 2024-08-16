@@ -44,5 +44,14 @@ alias ....="cd ../../.."
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-export XDG_DATA_DIRS="/home/linuxbrew/.linuxbrew/share:$XDG_DATA_DIRS"
+if [[ "$PRETTY_NAME" == *"Fedora"* ]]; then
+	eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+	export XDG_DATA_DIRS="/home/linuxbrew/.linuxbrew/share:$XDG_DATA_DIRS"
+elif [[ "$PRETTY_NAME" == *"Ubuntu"* ]]; then
+	eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+	export XDG_DATA_DIRS="/home/linuxbrew/.linuxbrew/share:$XDG_DATA_DIRS"
+elif [[ "$PRETTY_NAME" == *"Debian"* ]]; then
+    #echo "Brew not working in Debian for Rasberry"
+else
+    #echo "System is not Fedora nor Ubuntu nor Debian."
+fi
