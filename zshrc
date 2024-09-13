@@ -56,6 +56,7 @@ elif [[ "$PRETTY_NAME" == *"Debian"* ]]; then
     alias bat="batcat"
     alias nvim="/snap/bin/nvim"
     alias lazygit="/snap/bin/lazygit"
+    alias rclone="/snap/bin/rclone"
 else
     # echo "System is not Fedora nor Ubuntu nor Debian."
 fi
